@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OBJEKT // 01 — Atelier Vera imzasıyla yılda yalnızca 50 adet üretilen, ham Roma traverteni ve 1.2 mikron Mylar elektrostatik diyaframdan oluşan mimari ses heykeli.">
+    <title>OBJEKT // 01 — Mimari Akustik Monolit & Elektrostatik Ses Heykeli</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- ── Güvenlik Meta Etiketleri ─────────────────────────────────── -->
+    <!-- XSS koruması: inline script'leri kısıtla, sadece izin verilen kaynaklara izin ver -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' https://images.unsplash.com https://placehold.co data:;
+        connect-src 'none';
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+    ">
+    <!-- Clickjacking koruması -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <!-- XSS filtresi (eski tarayıcılar için) -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <!-- MIME sniffing koruması -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <!-- Referrer bilgisi sızmasını önle -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- Hassas tarayıcı API'larına erişimi kısıtla -->
+    <meta http-equiv="Permissions-Policy" content="
+        camera=(),
+        microphone=(),
+        geolocation=(),
+        payment=()
+    ">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        alabaster:      '#FAF9F6',
+                        travertine:     '#F3F2EE',
+                        travertineDeep: '#EAE7E0',
+                        charcoal:       '#111111',
+                        stone:          '#6E6A63',
+                        hairline:       '#E5E2DC',
+                        bronze:         '#8C7A6B',
+                        terracotta:     '#9E5A3C'
+                    },
+                    fontFamily: {
+                        serif:    ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                        editorial:['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                        sans:     ['"DM Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono:     ['"DM Mono"', 'monospace']
+                    },
+                    transitionTimingFunction: {
+                        'editorial': 'cubic-bezier(0.16, 1, 0.3, 1)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Özel Stiller -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-alabaster text-charcoal">
+
+    <!-- ── Kağıt Doku Katmanı ─────────────────────────────────────────── -->
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.022]" aria-hidden="true">
+        <svg class="w-full h-full">
+            <filter id="paper-grain">
+                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+                <feColorMatrix type="saturate" values="0"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#paper-grain)"/>
+        </svg>
+    </div>
+
+    <!-- ── Editoryal Toast Bildirimi ──────────────────────────────────── -->
+    <div id="editorial-toast" class="fixed bottom-8 right-8 z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-500">
+        <div class="bg-charcoal text-alabaster px-6 py-4 shadow-2xl border border-charcoal flex items-center gap-4 max-w-md">
+            <span class="w-2 h-2 rounded-full bg-alabaster animate-ping shrink-0"></span>
+            <div>
+                <p id="toast-kicker" class="font-mono text-[10px] tracking-[0.2em] uppercase text-stone">KATALOG ARŞİVİ // NOT</p>
+                <p id="toast-body"   class="text-xs font-sans tracking-wide mt-0.5">Kayıt panoya kopyalandı.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- 1. HEADER                                                        -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <header class="sticky top-0 z-40 bg-alabaster/90 backdrop-blur-md border-b border-hairline transition-all duration-500">
+        <div class="max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 h-16 sm:h-20 flex items-center justify-between gap-4">
+
+            <div class="flex items-center gap-4">
+                <a href="#sergi-giris" class="font-mono text-[11px] tracking-[0.18em] uppercase text-charcoal hover:text-stone transition-colors">
+                    ATELIER VERA <span class="hidden md:inline text-stone">— ZÜRICH / KAYSERİ</span>
+                </a>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] uppercase text-charcoal">
+                <span class="text-stone">SERGİ MONOGRAFİSİ</span>
+                <span class="text-hairline">|</span>
+                <span class="font-medium">OBJEKT // 01 — MONOLİTİK SES HEYKELİ</span>
+            </div>
+
+            <div class="flex items-center gap-3 sm:gap-5">
+                <button
+                    id="ambient-sound-btn"
+                    type="button"
+                    onclick="toggleAmbientAcoustic()"
+                    class="group flex items-center gap-2 px-3 py-2 border border-hairline hover:border-charcoal bg-travertine/60 transition-all duration-500 shrink-0"
+                    title="432 Hz Elektrostatik Akustik Oda Rezonansını Dinle"
+                >
+                    <span id="sound-indicator" class="w-2 h-2 rounded-full bg-stone group-hover:bg-charcoal transition-colors shrink-0"></span>
+                    <span id="sound-label" class="font-mono text-[10px] tracking-[0.12em] uppercase text-charcoal whitespace-nowrap">AKUSTİK: KAPALI</span>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="openAppointmentModal()"
+                    class="px-4 sm:px-5 py-2 bg-charcoal text-alabaster hover:bg-stone font-mono text-[10px] tracking-[0.18em] uppercase transition-colors duration-500"
+                >
+                    Özel Gösterim Randevusu
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <!-- 2. HERO ALANI                                                -->
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <section id="sergi-giris" class="relative pt-16 sm:pt-24 pb-32 md:pb-44 px-5 sm:px-10 lg:px-16 border-b border-hairline">
+            <div class="max-w-[1600px] mx-auto">
+
+                <!-- Dergi İndeks Satırı -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 pb-8 mb-10 border-b border-hairline font-mono text-[11px] text-stone uppercase tracking-[0.16em]">
+                    <div class="md:col-span-4">SERGİ KÜNYE № 01 // SONBAHAR–KIŞ MONOGRAFİSİ</div>
+                    <div class="md:col-span-4 md:text-center">MALZEME: HAM ROMA TRAVERTENİ & AL-7075</div>
+                    <div class="md:col-span-4 md:text-right text-charcoal">SINIRLI EDİSYON: 50 NUMARALI MONOLİT</div>
+                </div>
+
+                <!-- Hero Başlık -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-16 md:mb-24">
+                    <div class="lg:col-span-9">
+                        <p class="font-mono text-xs uppercase tracking-[0.22em] text-stone mb-4">[ OBJEKT // 01 — ELEKTROSTATİK AKUSTİK HEYKEL ]</p>
+                        <h1 class="display-hero text-charcoal">
+                            SESSİZLİĞİN <br>
+                            <span class="italic font-light text-stone">MİMARİSİ.</span>
+                        </h1>
+                    </div>
+                    <div class="lg:col-span-3 border-l border-hairline pl-6 py-2 flex flex-col justify-between space-y-6">
+                        <p class="font-editorial text-xl sm:text-2xl italic text-charcoal leading-snug">
+                            "İyi tasarım, mümkün olduğunca az tasarımdır; ses ise yalnızca taşın izin verdiği kadar saf kalabilir."
+                        </p>
+                        <p class="text-xs text-stone leading-relaxed">
+                            Tivoli ocaklarından çıkarılan 68 kilogramlık yekpare gözenekli Roma traverteni ile 1.2 mikron ultra-ince Mylar elektrostatik diyaframın akustik sentezi.
+                        </p>
+                        <div class="pt-3 border-t border-hairline flex items-center justify-between font-mono text-[10px] tracking-widest uppercase text-stone">
+                            <span>KÜRATÖR: CLARA VANDENBERG</span>
+                            <span class="text-charcoal">FIG. 01</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Sahne -->
+                <div class="relative bg-travertine border border-hairline p-4 sm:p-8 lg:p-12">
+
+                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 font-mono text-[10px] text-stone tracking-[0.16em] uppercase mb-4 pb-3 border-b border-hairline">
+                        <span class="hidden sm:inline">├── YÜKSEKLİK: 1,420.0 mm (55.9 in) ──┤</span>
+                        <span class="hidden md:inline">ELEKTROSTATİK DİYAFRAM: 3,840 cm²</span>
+                        <span id="hero-telemetry-live" class="text-charcoal">● REZONANS: 0.002 Hz SAPMA</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+                        <!-- Sol: Mimari Fotoğraf -->
+                        <div class="lg:col-span-7 relative editorial-image-frame min-h-[420px] sm:min-h-[580px] border border-hairline group">
+                            <img
+                                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85"
+                                onerror="this.src='https://placehold.co/1200x900/EAE7E0/111111?text=OBJEKT+//+01+MONOLITH'"
+                                alt="OBJEKT 01 Mimari Sergi Mekânı ve Traverten Monolit"
+                                class="w-full h-full object-cover grayscale contrast-[1.06] brightness-[0.97]"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent flex flex-col justify-between p-6 sm:p-10 text-alabaster">
+                                <div class="flex justify-between items-start font-mono text-[10px] tracking-[0.2em] uppercase">
+                                    <span class="bg-charcoal/80 backdrop-blur-md px-3 py-1.5">PAVILLON VERA — ZÜRICH ENSTALASYONU</span>
+                                    <span class="bg-alabaster/90 text-charcoal px-3 py-1.5">DOĞAL GÜN IŞIĞI ETÜDÜ // 16:40</span>
+                                </div>
+                                <div class="max-w-md">
+                                    <p class="font-mono text-[10px] tracking-[0.2em] uppercase text-alabaster/80 mb-1">MİMARİ AKUSTİK ENTEGRASYON</p>
+                                    <p class="font-editorial text-2xl sm:text-3xl italic">Kabin kutusu olmayan, odayı bir enstrümana dönüştüren dipol ses alanı.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sağ: Canvas Lab -->
+                        <div class="lg:col-span-5 bg-alabaster border border-hairline p-6 sm:p-8 flex flex-col justify-between relative editorial-grid-bg">
+                            <div>
+                                <div class="flex items-center justify-between font-mono text-[10px] tracking-[0.18em] text-stone uppercase pb-4 mb-6 border-b border-hairline">
+                                    <span>FIG. 01.B — CANLI DİPOL ALAN SİMÜLASYONU</span>
+                                    <span class="text-charcoal font-medium">[ ETKİLEŞİMLİ ]</span>
+                                </div>
+                                <h2 class="font-serif text-2xl sm:text-3xl text-charcoal mb-2">360° Silindirik Dalga Yayılımı</h2>
+                                <p class="text-xs text-stone leading-relaxed mb-4">
+                                    İmlecinizi aşağıdaki monolit kesiti üzerinde gezdirerek elektrostatik Mylar membranın ön ve arka faz dalgalarını nasıl yaydığını inceleyin.
+                                </p>
+                            </div>
+
+                            <div class="relative my-2 bg-travertine border border-hairline p-3">
+                                <canvas id="hero-monolith-canvas" class="w-full h-[310px] block cursor-crosshair"></canvas>
+                                <div class="flex items-center justify-between font-mono text-[10px] text-stone pt-2 border-t border-hairline">
+                                    <span id="hero-probe-coords">PROB KONUMU: MERKEZ EKSEN</span>
+                                    <span id="hero-spl-readout" class="text-charcoal font-medium">SPL: 94.2 dB @ 1m</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 mt-4 border-t border-hairline flex flex-wrap items-center justify-between gap-2 font-mono text-[10px]">
+                                <span class="text-stone uppercase tracking-wider">REzonans Modu:</span>
+                                <div class="flex items-center gap-1.5">
+                                    <button type="button" onclick="setHeroWaveProfile(1)" id="hero-prof-1" class="px-2.5 py-1 bg-charcoal text-alabaster uppercase transition-colors">110 Hz (BASS)</button>
+                                    <button type="button" onclick="setHeroWaveProfile(2)" id="hero-prof-2" class="px-2.5 py-1 bg-travertine text-stone hover:text-charcoal border border-hairline uppercase transition-colors">432 Hz (ODA)</button>
+                                    <button type="button" onclick="setHeroWaveProfile(3)" id="hero-prof-3" class="px-2.5 py-1 bg-travertine text-stone hover:text-charcoal border border-hairline uppercase transition-colors">12 kHz (HAVA)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Alt Metrikler -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 mt-8 border-t border-hairline font-mono text-xs">
+                        <div>
+                            <span class="text-[10px] text-stone uppercase tracking-widest block">MONOLİT KÜTLESİ</span>
+                            <span class="text-lg font-medium text-charcoal mt-1 block">68.4 kg <span class="text-stone text-xs">(Adet)</span></span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-stone uppercase tracking-widest block">DİYAFRAM KALINLIĞI</span>
+                            <span class="text-lg font-medium text-charcoal mt-1 block">1.2 µm <span class="text-stone text-xs">Mylar Film</span></span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-stone uppercase tracking-widest block">FREKANS YANITI</span>
+                            <span class="text-lg font-medium text-charcoal mt-1 block">24 Hz – 42 kHz <span class="text-stone text-xs">(±1.2 dB)</span></span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-stone uppercase tracking-widest block">KABİN REZONANSI</span>
+                            <span class="text-lg font-medium text-charcoal mt-1 block">0.00 dB <span class="text-stone text-xs">(Sıfır Kutu)</span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <!-- 3. MANİFESTO                                                  -->
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <section id="manifesto-section" class="relative py-36 md:py-48 px-5 sm:px-10 lg:px-16 border-b border-hairline bg-alabaster">
+            <div class="max-w-[1380px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+                    <div class="lg:col-span-3 lg:sticky lg:top-32 space-y-6">
+                        <div class="font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
+                            <span class="text-charcoal font-medium block mb-1">SERGİ NOTU № 02</span>
+                            <span>FELSEFE & AKUSTİK SAFLIK</span>
+                        </div>
+                        <div class="w-12 h-[1px] bg-charcoal"></div>
+                        <p class="text-xs text-stone leading-relaxed">
+                            Sayfayı aşağı kaydırdıkça her kelimenin tipografik ağırlığı ve kontrastı, sesin sessizlikten doğuşunu simüle edecek biçimde belirginleşir.
+                        </p>
+                        <div class="pt-4 border-t border-hairline font-mono text-[10px] text-stone">
+                            <div class="flex justify-between mb-1.5">
+                                <span>MANİFESTO ODAK ORANI</span>
+                                <span id="manifesto-progress-label" class="text-charcoal">18%</span>
+                            </div>
+                            <div class="w-full h-[2px] bg-hairline overflow-hidden">
+                                <div id="manifesto-progress-bar" class="h-full bg-charcoal w-[18%] transition-all duration-150"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-9">
+                        <div id="manifesto-text-container" class="display-manifesto text-charcoal">
+                            Geleneksel hoparlörler sesi ahşap veya plastik kutulara hapseder; kutunun kendi duvarları müziğe ait olmayan sahte bir yankı üretir. OBJEKT // 01 bu yanılsamayı reddeder. Yekpare Roma traverteninin milyonlarca yıllık mikro-gözenekli kütlesi, istenmeyen tüm mekanik titreşimleri mutlak sessizlikte yutar; geriye yalnızca havada asılı duran saf elektrostatik ses kalır.
+                        </div>
+                        <div class="mt-16 pt-8 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs text-stone">
+                            <span>DIETER RAMS & ATELIER VERA ARŞİVİNDEN İLHAMLA</span>
+                            <span class="text-charcoal">"WENIGER, ABER BESSER" — DAHA AZ, AMA DAHA İYİ.</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <!-- 4. SAHNE 01: TRAVERTEN GÖVDE & SIFIR REZONANS               -->
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <section id="sahne-01" class="relative py-32 md:py-44 px-5 sm:px-10 lg:px-16 border-b border-hairline bg-alabaster">
+            <div class="max-w-[1600px] mx-auto">
+
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-16 border-b border-hairline font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
+                    <span>SAHNE 01 // MİMARİ KÜTLE VE AKUSTİK SÖNÜMLEME</span>
+                    <span>FIG. 02 — TIVOLI TRAVERTEN KESİT ANALİZİ</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                    <div class="lg:col-span-6 space-y-8">
+                        <div class="font-mono text-xs uppercase tracking-[0.2em] text-stone">01 / HAM ROMA TRAVERTENİ GÖVDE & SIFIR REZONANS</div>
+                        <h2 class="display-stage text-charcoal">
+                            Milyon Yıllık Taşın <br>
+                            <span class="italic font-light text-stone">Akustik Ataleti.</span>
+                        </h2>
+                        <p class="text-base sm:text-lg text-stone leading-relaxed font-light">
+                            Her OBJEKT // 01 kaidesi, İtalya'nın Tivoli bölgesindeki antik taş ocaklarından çıkarılan 180 kilogramlık ham traverten bloktan 5 eksenli su jeti ve el işçiliğiyle oyulur. Taşın doğal kalsiyum karbonat boşlukları (kavernler), akustik enerjiyi ısıya dönüştüren doğal bir Helmholtz rezonatörü görevi görür.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 pt-4 items-center">
+                            <div class="sm:col-span-5 editorial-image-frame h-44 border border-hairline">
+                                <img
+                                    src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80"
+                                    onerror="this.src='https://placehold.co/600x400/EAE7E0/111111?text=ROMAN+TRAVERTINE'"
+                                    alt="Ham Roma Traverteni Mikro Gözenek Dokusu"
+                                    class="w-full h-full object-cover grayscale contrast-125"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="sm:col-span-7 space-y-3 border-l border-hairline pl-5">
+                                <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-charcoal">MALZEME LABORATUVAR NOTU</p>
+                                <p class="text-xs text-stone leading-relaxed">
+                                    Dolgusuz bırakılan açık gözenekler, 120 Hz – 800 Hz arasındaki parazitik gövde yansımalarını alüminyumdan 14 kat, MDF ahşaptan 38 kat daha hızlı sönümler.
+                                </p>
+                                <div class="font-mono text-[11px] text-charcoal pt-1">ÖZGÜL YOĞUNLUK: <strong>2,410 kg/m³</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6">
+                        <div class="bg-travertine border border-hairline p-6 sm:p-10">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-hairline font-mono text-[10px] uppercase tracking-[0.18em]">
+                                <span class="text-charcoal font-medium">MİKRO-GÖZENEK REZONANS SKANERİ</span>
+                                <span id="stone-damping-readout" class="text-stone">SÖNÜMLEME: -48.6 dB / ms</span>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2 mb-6 font-mono text-[10px]">
+                                <button type="button" onclick="setStoneScannerMaterial('travertine')" id="mat-btn-travertine" class="py-2.5 px-3 bg-charcoal text-alabaster uppercase tracking-wider text-left transition-all">
+                                    <span class="block text-[9px] opacity-70">01 // OBJEKT</span>ROMA TRAVERTENİ
+                                </button>
+                                <button type="button" onclick="setStoneScannerMaterial('aluminum')" id="mat-btn-aluminum" class="py-2.5 px-3 bg-alabaster text-stone hover:text-charcoal border border-hairline uppercase tracking-wider text-left transition-all">
+                                    <span class="block text-[9px] opacity-70">02 // STANDART</span>DÖKÜM ALÜMİNYUM
+                                </button>
+                                <button type="button" onclick="setStoneScannerMaterial('wood')" id="mat-btn-wood" class="py-2.5 px-3 bg-alabaster text-stone hover:text-charcoal border border-hairline uppercase tracking-wider text-left transition-all">
+                                    <span class="block text-[9px] opacity-70">03 // KLASİK</span>AHŞAP KABİN (MDF)
+                                </button>
+                            </div>
+
+                            <div class="relative bg-alabaster border border-hairline p-4">
+                                <canvas id="travertine-scanner-canvas" class="w-full h-[320px] block cursor-crosshair"></canvas>
+                                <div class="mt-3 pt-3 border-t border-hairline flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] text-stone">
+                                    <span>SKANER EKSENİNİ TAŞ ÜZERİNDE GEZDİRİN</span>
+                                    <span id="stone-porosity-label" class="text-charcoal">KAVERN SÖNÜMLEME VERİMİ: %99.4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <!-- 5. SAHNE 02: MYLAR ELEKTROSTATİK DİYAFRAM                  -->
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <section id="sahne-02" class="relative py-32 md:py-44 px-5 sm:px-10 lg:px-16 border-b border-hairline bg-travertine">
+            <div class="max-w-[1600px] mx-auto">
+
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-16 border-b border-hairline font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
+                    <span>SAHNE 02 // HAVA KÜTLESİNDEN DAHA HAFİF TRANSDÜSER</span>
+                    <span>FIG. 03 — ELEKTROSTATİK FAZ VE STATOR ALANI</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+                    <!-- Sol: Canvas -->
+                    <div class="lg:col-span-7 order-2 lg:order-1">
+                        <div class="bg-alabaster border border-hairline p-6 sm:p-10">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-hairline font-mono text-[10px] uppercase tracking-[0.18em]">
+                                <span class="text-charcoal font-medium">CANLI ELEKTROSTATİK MEMBRAN LABORATUVARI</span>
+                                <span id="esl-velocity-readout" class="text-stone">TEPKİ HIZI: 0.0008 ms</span>
+                            </div>
+
+                            <div class="bg-travertine border border-hairline p-4">
+                                <canvas id="electrostatic-canvas" class="w-full h-[340px] block"></canvas>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8 mt-6 border-t border-hairline font-mono text-xs">
+                                <div>
+                                    <div class="flex justify-between mb-3">
+                                        <label for="esl-freq-slider" class="text-stone text-[10px] uppercase tracking-widest">SÜRÜCÜ FREKANSI (Hz)</label>
+                                        <span id="esl-freq-val" class="text-charcoal font-medium">340 Hz</span>
+                                    </div>
+                                    <input id="esl-freq-slider" type="range" min="40" max="1200" value="340" class="rams-slider">
+                                    <div class="flex justify-between text-[10px] text-stone mt-2">
+                                        <span>40 Hz</span><span>600 Hz</span><span>1,200 Hz</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-3">
+                                        <label for="esl-volt-slider" class="text-stone text-[10px] uppercase tracking-widest">STATOR POLARİZASYON GERİLİMİ (V)</label>
+                                        <span id="esl-volt-val" class="text-charcoal font-medium">5,400 V DC</span>
+                                    </div>
+                                    <input id="esl-volt-slider" type="range" min="1500" max="6500" step="100" value="5400" class="rams-slider">
+                                    <div class="flex justify-between text-[10px] text-stone mt-2">
+                                        <span>1.5 kV</span><span>4.0 kV</span><span>6.5 kV</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sağ: Anlatı -->
+                    <div class="lg:col-span-5 order-1 lg:order-2 space-y-8 lg:pl-4">
+                        <div class="font-mono text-xs uppercase tracking-[0.2em] text-stone">02 / 1.2 MİKRON MYLAR ELEKTROSTATİK DİYAFRAM</div>
+                        <h2 class="display-stage text-charcoal">
+                            Kütlesiz Hareket, <br>
+                            <span class="italic font-light text-stone">Kusursuz Faz.</span>
+                        </h2>
+                        <p class="text-base sm:text-lg text-stone leading-relaxed font-light">
+                            Koni, kubbe veya mıknatıs bobini yoktur. İki delikli pirinç kaplama stator plakası arasına gerilmiş, moleküler düzeyde grafit iletken kaplı 1.2 mikronluk Mylar film, önündeki hava sütunundan bile daha hafiftir.
+                        </p>
+                        <p class="text-sm text-stone leading-relaxed">
+                            Müzik sinyali statorlara ulaştığında, diyaframın tamamı aynı anda, tek bir homojen yüzey olarak elektrostatik kuvvetle itilir ve çekilir. Böylece noktasal kaynaklı hoparlörlerde görülen kırınım ve faz gecikmesi tamamen ortadan kalkar.
+                        </p>
+                        <div class="pt-6 border-t border-hairline space-y-4 font-mono text-xs">
+                            <div class="flex justify-between py-2 border-b border-hairline">
+                                <span class="text-stone">HAREKETLİ DİYAFRAM KÜTLESİ</span>
+                                <span class="text-charcoal font-medium">0.42 Gram (Toplam Yüzey)</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-hairline">
+                                <span class="text-stone">HARMONİK BOZULMA (THD)</span>
+                                <span class="text-charcoal font-medium">&lt; %0.008 @ 90 dB SPL</span>
+                            </div>
+                            <div class="flex justify-between py-2">
+                                <span class="text-stone">STATOR İZOLASYONU</span>
+                                <span class="text-charcoal font-medium">Çift Katmanlı Seramik Dielektrik</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <!-- 6. SAHNE 03: KİNETİK SARKAÇ & CNC KADRAN                   -->
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <section id="sahne-03" class="relative py-32 md:py-44 px-5 sm:px-10 lg:px-16 border-b border-hairline bg-alabaster">
+            <div class="max-w-[1600px] mx-auto">
+
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-16 border-b border-hairline font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
+                    <span>SAHNE 03 // ENSTRÜMAN HASSASİYETİNDE MEKANİK ETKİLEŞİM</span>
+                    <span>FIG. 04 — KİNETİK SARKAÇ & CNC ATTENUATOR</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                    <div class="lg:col-span-6 space-y-8">
+                        <div class="font-mono text-xs uppercase tracking-[0.2em] text-stone">03 / KİNETİK SARKAÇ VE DOKUNSAL ALÜMİNYUM KADRAN</div>
+                        <h2 class="display-stage text-charcoal">
+                            Dokunulabilir <br>
+                            <span class="italic font-light text-stone">Sessizlik Enstrümanı.</span>
+                        </h2>
+                        <p class="text-base sm:text-lg text-stone leading-relaxed font-light">
+                            OBJEKT // 01 üzerinde hiçbir dijital ekran, dokunmatik cam veya plastik tuş bulunmaz. Traverten gövdenin üst yüzeyine gömülü tek kontrol öğesi, İsviçre saat mekanizmalarında kullanılan yakut rulmanlar üzerinde dönen, 420 gramlık yekpare havacılık alüminyumu kadrandır.
+                        </p>
+                        <p class="text-sm text-stone leading-relaxed">
+                            Her 1.5 derecelik dönüş, altın kaplama ayrık (discrete) Vishay direnç rölelerini fiziksel bir tıkırtıyla devreye sokar. Sağdaki interaktif kadranı farenizle sürükleyerek mekanik zayıflatıcıyı (attenuator) deneyimleyin.
+                        </p>
+
+                        <div class="pt-4 border-t border-hairline">
+                            <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-stone block mb-3">KALİBRE SES SEVİYESİ ÖN-AYARLARI:</span>
+                            <div class="flex flex-wrap gap-2 font-mono text-xs">
+                                <button type="button" onclick="animateDialTo(-60)" class="px-3.5 py-2 border border-hairline hover:border-charcoal bg-travertine text-charcoal transition-colors">-60 dB (GECE)</button>
+                                <button type="button" onclick="animateDialTo(-24)" class="px-3.5 py-2 border border-hairline hover:border-charcoal bg-travertine text-charcoal transition-colors">-24 dB (ODA ODAK)</button>
+                                <button type="button" onclick="animateDialTo(-8)"  class="px-3.5 py-2 border border-charcoal bg-charcoal text-alabaster transition-colors">-8.0 dB (SERGİ REFERANS)</button>
+                                <button type="button" onclick="animateDialTo(0)"   class="px-3.5 py-2 border border-hairline hover:border-charcoal bg-travertine text-charcoal transition-colors">0.0 dB (DOĞRUDAN)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6">
+                        <div class="bg-travertine border border-hairline p-8 sm:p-12 flex flex-col items-center justify-between relative">
+
+                            <div class="w-full flex items-center justify-between font-mono text-[10px] text-stone uppercase tracking-[0.18em] pb-4 mb-6 border-b border-hairline">
+                                <span>AL-7075 CNC MONOBLOK KADRAN</span>
+                                <span id="dial-angular-velocity" class="text-charcoal">AÇISAL HIZ: 0.00 rad/s</span>
+                            </div>
+
+                            <div class="relative my-6 flex items-center justify-center select-none">
+                                <svg class="w-72 h-72 sm:w-80 sm:h-80 pointer-events-none" viewBox="0 0 300 300">
+                                    <circle cx="150" cy="150" r="138" fill="none" stroke="#E5E2DC" stroke-width="1"/>
+                                    <circle cx="150" cy="150" r="118" fill="none" stroke="#111111" stroke-width="0.75" stroke-dasharray="2 6"/>
+                                    <text x="150" y="22"  text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#6E6A63">-24 dB</text>
+                                    <text x="42"  y="235" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#6E6A63">-∞ MUTE</text>
+                                    <text x="258" y="235" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#111111">0.0 dB MAX</text>
+                                </svg>
+
+                                <div
+                                    id="interactive-cnc-dial"
+                                    class="w-48 h-48 sm:w-56 sm:h-56 rounded-full cnc-dial-surface absolute cursor-grab active:cursor-grabbing flex items-center justify-center"
+                                    style="transform: rotate(65deg);"
+                                    title="Kadranı Çevirmek İçin Basılı Tutup Sürükleyin"
+                                >
+                                    <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full border border-charcoal/15 flex flex-col items-center justify-between py-4 pointer-events-none">
+                                        <div class="w-1 h-5 bg-charcoal"></div>
+                                        <div class="text-center">
+                                            <span class="font-mono text-[9px] tracking-[0.2em] text-stone block">ATELIER VERA</span>
+                                            <span class="font-mono text-[10px] text-charcoal font-medium">STEPPED R-2R</span>
+                                        </div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-stone/40"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w-full grid grid-cols-3 gap-4 pt-6 mt-4 border-t border-hairline font-mono text-center">
+                                <div>
+                                    <span class="text-[10px] text-stone uppercase block">ZAYIFLATMA (GAIN)</span>
+                                    <span id="dial-db-readout" class="text-lg sm:text-xl font-medium text-charcoal mt-1 block">-8.0 dB</span>
+                                </div>
+                                <div class="border-x border-hairline px-2">
+                                    <span class="text-[10px] text-stone uppercase block">AKTİF VISHAY RÖLE</span>
+                                    <span id="dial-relay-readout" class="text-lg sm:text-xl font-medium text-charcoal mt-1 block">ADIM #48 / 64</span>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-stone uppercase block">SARKAÇ DENGE AÇISI</span>
+                                    <span id="dial-angle-readout" class="text-lg sm:text-xl font-medium text-charcoal mt-1 block">+65.0°</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <!-- 7. YATAY KAYAN GALERİ                                        -->
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <section id="sergi-galerisi" class="relative h-[340vh] bg-travertine border-b border-hairline">
+            <div class="sticky top-0 h-screen overflow-hidden flex flex-col justify-between py-20 sm:py-24">
+
+                <div class="max-w-[1600px] w-full mx-auto px-5 sm:px-10 lg:px-16">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-hairline">
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-stone block mb-2">SERGİ SALONU № 04 // GÖRSEL ARŞİV VE IŞIK ETÜTLERİ</span>
+                            <h2 class="font-serif text-3xl sm:text-5xl text-charcoal tracking-tight">Mekan, Işık ve Monolit.</h2>
+                        </div>
+                        <div class="flex items-center gap-6 font-mono text-xs">
+                            <div class="hidden md:flex items-center gap-3">
+                                <span class="text-stone text-[10px] uppercase tracking-widest">GALERİ AKIŞI</span>
+                                <div class="w-32 h-[1px] bg-hairline relative">
+                                    <div id="gallery-scroll-bar" class="h-full bg-charcoal w-[20%] transition-all duration-100"></div>
+                                </div>
+                                <span id="gallery-index-readout" class="text-charcoal">01 / 05</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="nudgeHorizontalGallery(-1)" class="w-9 h-9 border border-charcoal/30 hover:border-charcoal flex items-center justify-center text-charcoal transition-colors" title="Önceki Eser">←</button>
+                                <button type="button" onclick="nudgeHorizontalGallery(1)"  class="w-9 h-9 border border-charcoal/30 hover:border-charcoal flex items-center justify-center text-charcoal transition-colors" title="Sonraki Eser">→</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex items-center overflow-hidden my-4">
+                    <div id="horizontal-gallery-track" class="flex items-stretch gap-8 sm:gap-12 px-5 sm:px-10 lg:px-16 will-change-transform transition-transform duration-150 ease-out">
+
+                        <article class="w-[84vw] sm:w-[560px] lg:w-[640px] shrink-0 bg-alabaster border border-hairline p-5 sm:p-7 flex flex-col justify-between">
+                            <div class="editorial-image-frame h-64 sm:h-80 border border-hairline mb-5">
+                                <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85" onerror="this.src='https://placehold.co/800x600/EAE7E0/111111?text=PLATE+I'" alt="Villa Kronenhalle Akustik Işık Etüdü" class="w-full h-full object-cover grayscale contrast-[1.08]" loading="lazy">
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between font-mono text-[10px] text-stone uppercase tracking-[0.18em] mb-2">
+                                    <span>LEVHA I // MİMARİ KONUMLANDIRMA</span><span>ZÜRICH, 47.3769° N</span>
+                                </div>
+                                <h3 class="font-serif text-2xl sm:text-3xl text-charcoal mb-2">Villa Kronenhalle — Kuzey Işığı Etüdü</h3>
+                                <p class="text-xs text-stone leading-relaxed mb-4">Küratör Notu: Ham beton ve kireç sıvalı duvarlar arasında çift OBJEKT // 01 monoliti. Duvarlardan 1.4 metre öne yerleştirilen dipol yüzeyler, odanın doğal yankı süresini (RT60) 0.38 saniyede dengeler.</p>
+                                <div class="pt-3 border-t border-hairline flex justify-between font-mono text-[10px] text-charcoal">
+                                    <span>FOTOĞRAF: HENRIK LINDQVIST</span><span>MALZEME: AÇIK GÖZENEK TRAVERTEN</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="w-[84vw] sm:w-[560px] lg:w-[640px] shrink-0 bg-alabaster border border-hairline p-5 sm:p-7 flex flex-col justify-between">
+                            <div class="editorial-image-frame h-64 sm:h-80 border border-hairline mb-5">
+                                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=85" onerror="this.src='https://placehold.co/800x600/EAE7E0/111111?text=PLATE+II'" alt="Monolit Gölge ve Oran Etüdü" class="w-full h-full object-cover grayscale contrast-[1.08]" loading="lazy">
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between font-mono text-[10px] text-stone uppercase tracking-[0.18em] mb-2">
+                                    <span>LEVHA II // ALTIN ORAN MONOLİT KESİTİ</span><span>ORAN: 1 : 1.618</span>
+                                </div>
+                                <h3 class="font-serif text-2xl sm:text-3xl text-charcoal mb-2">Sessizliğin Geometrisi ve Gölge</h3>
+                                <p class="text-xs text-stone leading-relaxed mb-4">Küratör Notu: 142 santimetrelik dikey elektrostatik kule, oturma ve ayakta dinleme pozisyonlarının tamamında kulak hizasıyla kusursuz silindirik dalga cephesi kurar.</p>
+                                <div class="pt-3 border-t border-hairline flex justify-between font-mono text-[10px] text-charcoal">
+                                    <span>MİMARİ ETÜT: ATELIER VERA</span><span>KALINLIK: 38.0 mm PROFIL</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="w-[84vw] sm:w-[560px] lg:w-[640px] shrink-0 bg-alabaster border border-hairline p-5 sm:p-7 flex flex-col justify-between">
+                            <div class="editorial-image-frame h-64 sm:h-80 border border-hairline mb-5">
+                                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=85" onerror="this.src='https://placehold.co/800x600/EAE7E0/111111?text=PLATE+III'" alt="Fırçalanmış Havacılık Alüminyumu Stator" class="w-full h-full object-cover grayscale contrast-[1.12]" loading="lazy">
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between font-mono text-[10px] text-stone uppercase tracking-[0.18em] mb-2">
+                                    <span>LEVHA III // MIKRO-PERFORE STATOR</span><span>4,800 DELİK / AKUSTİK KAFES</span>
+                                </div>
+                                <h3 class="font-serif text-2xl sm:text-3xl text-charcoal mb-2">Fırçalanmış AL-7075 Havacılık Çerçevesi</h3>
+                                <p class="text-xs text-stone leading-relaxed mb-4">Küratör Notu: Cam küreciklerle kumlanmış ve doğal gümüş anodizasyonla mühürlenmiş alüminyum kanatlar, diyaframın ürettiği arka dalgayı kırınımsız olarak odaya bırakır.</p>
+                                <div class="pt-3 border-t border-hairline flex justify-between font-mono text-[10px] text-charcoal">
+                                    <span>TOLERANS: ±0.005 mm CNC</span><span>YÜZEY: MAT GÜMÜŞ ANODİZE</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="w-[84vw] sm:w-[560px] lg:w-[640px] shrink-0 bg-alabaster border border-hairline p-5 sm:p-7 flex flex-col justify-between">
+                            <div class="editorial-image-frame h-64 sm:h-80 border border-hairline mb-5">
+                                <img src="https://images.unsplash.com/photo-1545239351-ef35f43d514b?auto=format&fit=crop&w=1200&q=85" onerror="this.src='https://placehold.co/800x600/EAE7E0/111111?text=PLATE+IV'" alt="Tivoli Traverten Damar Yapısı" class="w-full h-full object-cover grayscale contrast-[1.1]" loading="lazy">
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between font-mono text-[10px] text-stone uppercase tracking-[0.18em] mb-2">
+                                    <span>LEVHA IV // JEOLOJİK TEKİLLİK</span><span>TIVOLI OCAKLARI, ROMA</span>
+                                </div>
+                                <h3 class="font-serif text-2xl sm:text-3xl text-charcoal mb-2">Her Edisyonda Tekrarlanamaz Damar İzi</h3>
+                                <p class="text-xs text-stone leading-relaxed mb-4">Küratör Notu: 50 çiftlik sınırlı edisyonun her birinde, sağ ve sol hoparlör kaideleri aynı traverten bloğun ardışık iki kesitinden (book-matched) eşleştirilerek üretilir.</p>
+                                <div class="pt-3 border-t border-hairline flex justify-between font-mono text-[10px] text-charcoal">
+                                    <span>EŞLEŞTİRME: BOOK-MATCHED ÇİFT</span><span>KORUMA: DOĞAL BALMUMU MÜHÜR</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="w-[84vw] sm:w-[560px] lg:w-[640px] shrink-0 bg-alabaster border border-hairline p-5 sm:p-7 flex flex-col justify-between">
+                            <div class="editorial-image-frame h-64 sm:h-80 border border-hairline mb-5">
+                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" onerror="this.src='https://placehold.co/800x600/EAE7E0/111111?text=PLATE+V'" alt="Minimalist Dinleme Tapınağı" class="w-full h-full object-cover grayscale contrast-[1.06]" loading="lazy">
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between font-mono text-[10px] text-stone uppercase tracking-[0.18em] mb-2">
+                                    <span>LEVHA V // MEKANSAL ENTEGRASYON</span><span>KAYSERİ / ZÜRICH AKUSTİK LAB</span>
+                                </div>
+                                <h3 class="font-serif text-2xl sm:text-3xl text-charcoal mb-2">Teknolojinin Görünmez Olduğu An</h3>
+                                <p class="text-xs text-stone leading-relaxed mb-4">Küratör Notu: Sistem kapalıyken dahi mekanın mimari dinginliğine katkı sunan bir neoklasik dikilitaş; çalıştırıldığında ise tüm duvarları ortadan kaldıran akustik mercek.</p>
+                                <div class="pt-3 border-t border-hairline flex justify-between font-mono text-[10px] text-charcoal">
+                                    <span>SERGİ ARŞİV KODU: VERA-2026-05</span><span>DURUM: KOLEKSİYON EDİSYONU</span>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="max-w-[1600px] w-full mx-auto px-5 sm:px-10 lg:px-16">
+                    <div class="pt-4 border-t border-hairline flex justify-between items-center font-mono text-[10px] text-stone uppercase tracking-[0.18em]">
+                        <span>SAYFAYI AŞAĞI KAYDIRARAK SERGİ SALONUNDA İLERLEYİN</span>
+                        <span class="text-charcoal">ATELIER VERA FOTOĞRAF ARŞİVİ © 2026</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <!-- 8. TEKNİK KATALOG & ARŞİV                                   -->
+        <!-- ════════════════════════════════════════════════════════════ -->
+        <section id="katalog-arsivi" class="relative py-32 md:py-44 px-5 sm:px-10 lg:px-16 border-b border-hairline bg-alabaster">
+            <div class="max-w-[1600px] mx-auto">
+
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-hairline gap-6">
+                    <div>
+                        <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-stone block mb-3">ARŞİV DİZİNİ № 05 // MÜZE KATALOĞU VE ÖLÇÜM VERİLERİ</span>
+                        <h2 class="display-stage text-charcoal">Teknik Monografi.</h2>
+                    </div>
+                    <p class="font-mono text-xs text-stone max-w-md">
+                        İlgili bileşenin teknik kesit çizimini sağdaki şematik ekranda incelemek için katalog satırlarının üzerine gelin; veriyi kopyalamak için tıklayın.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+                    <div class="lg:col-span-7 border-t border-hairline">
+
+                        <div onmouseenter="updateBlueprintSchematic(0)" onclick="copyCatalogSpec(this)" class="catalog-row py-6 border-b border-hairline cursor-pointer grid grid-cols-12 gap-4 items-baseline group">
+                            <div class="col-span-3 sm:col-span-2 font-mono text-xs text-stone group-hover:text-charcoal">CAT // 01</div>
+                            <div class="col-span-9 sm:col-span-4 font-serif text-2xl text-charcoal">Akustik Çalışma Prensibi</div>
+                            <div class="col-span-12 sm:col-span-6 text-xs sm:text-sm text-stone group-hover:text-charcoal leading-relaxed">Kabinsiz (Open-Baffle) Dipol Elektrostatik Line-Source Monolit + Alt-Oktav Traverten Helmholtz Sönümleme Odası</div>
+                        </div>
+
+                        <div onmouseenter="updateBlueprintSchematic(1)" onclick="copyCatalogSpec(this)" class="catalog-row py-6 border-b border-hairline cursor-pointer grid grid-cols-12 gap-4 items-baseline group">
+                            <div class="col-span-3 sm:col-span-2 font-mono text-xs text-stone group-hover:text-charcoal">CAT // 02</div>
+                            <div class="col-span-9 sm:col-span-4 font-serif text-2xl text-charcoal">Diyafram & Stator Yapısı</div>
+                            <div class="col-span-12 sm:col-span-6 text-xs sm:text-sm text-stone group-hover:text-charcoal leading-relaxed">1.2 Mikron Moleküler Grafit Kaplı Mylar Film // 3,840 cm² Aktif Yüzey // Çift CNC Perfore AL-7075 Stator</div>
+                        </div>
+
+                        <div onmouseenter="updateBlueprintSchematic(2)" onclick="copyCatalogSpec(this)" class="catalog-row py-6 border-b border-hairline cursor-pointer grid grid-cols-12 gap-4 items-baseline group">
+                            <div class="col-span-3 sm:col-span-2 font-mono text-xs text-stone group-hover:text-charcoal">CAT // 03</div>
+                            <div class="col-span-9 sm:col-span-4 font-serif text-2xl text-charcoal">Frekans & Faz Doğrusallığı</div>
+                            <div class="col-span-12 sm:col-span-6 text-xs sm:text-sm text-stone group-hover:text-charcoal leading-relaxed">24 Hz – 42,000 Hz (±1.2 dB Oda İçi Kalibre) // Faz Sapması: &lt; 0.4° (100 Hz – 20 kHz Aralığında)</div>
+                        </div>
+
+                        <div onmouseenter="updateBlueprintSchematic(3)" onclick="copyCatalogSpec(this)" class="catalog-row py-6 border-b border-hairline cursor-pointer grid grid-cols-12 gap-4 items-baseline group">
+                            <div class="col-span-3 sm:col-span-2 font-mono text-xs text-stone group-hover:text-charcoal">CAT // 04</div>
+                            <div class="col-span-9 sm:col-span-4 font-serif text-2xl text-charcoal">Amplifikasyon & Röle Katı</div>
+                            <div class="col-span-12 sm:col-span-6 text-xs sm:text-sm text-stone group-hover:text-charcoal leading-relaxed">Kaide İçi Saf Sınıf-A Doğrudan Kuplajlı Elektrostatik Sürücü (2x 450W Eşdeğeri) // 64-Adım Vishay R-2R Attenuator</div>
+                        </div>
+
+                        <div onmouseenter="updateBlueprintSchematic(4)" onclick="copyCatalogSpec(this)" class="catalog-row py-6 border-b border-hairline cursor-pointer grid grid-cols-12 gap-4 items-baseline group">
+                            <div class="col-span-3 sm:col-span-2 font-mono text-xs text-stone group-hover:text-charcoal">CAT // 05</div>
+                            <div class="col-span-9 sm:col-span-4 font-serif text-2xl text-charcoal">Giriş & Mimari Bağlantılar</div>
+                            <div class="col-span-12 sm:col-span-6 text-xs sm:text-sm text-stone group-hover:text-charcoal leading-relaxed">Saf Gümüş Kontak Neutrik XLR (Analog Dengeli), AES/EBU Master Dijital, Kayıpsız Optik I2S Senkron Bağlantısı</div>
+                        </div>
+
+                        <div onmouseenter="updateBlueprintSchematic(5)" onclick="copyCatalogSpec(this)" class="catalog-row py-6 border-b border-hairline cursor-pointer grid grid-cols-12 gap-4 items-baseline group">
+                            <div class="col-span-3 sm:col-span-2 font-mono text-xs text-stone group-hover:text-charcoal">CAT // 06</div>
+                            <div class="col-span-9 sm:col-span-4 font-serif text-2xl text-charcoal">Boyutlar & Monolit Kütlesi</div>
+                            <div class="col-span-12 sm:col-span-6 text-xs sm:text-sm text-stone group-hover:text-charcoal leading-relaxed">Yükseklik: 1,420 mm × Genişlik: 340 mm × Derinlik: 290 mm // Net Kütle: 68.4 kg (Tek) — 136.8 kg (Çift)</div>
+                        </div>
+
+                    </div>
+
+                    <div class="lg:col-span-5 lg:sticky lg:top-28">
+                        <div class="bg-travertine border border-hairline p-6 sm:p-10 editorial-grid-bg">
+                            <div class="flex items-center justify-between font-mono text-[10px] text-stone uppercase tracking-[0.18em] pb-4 mb-6 border-b border-hairline">
+                                <span id="schematic-code-label" class="text-charcoal font-medium">ŞEMATİK ÇİZİM // CAT-01</span>
+                                <span>ÖLÇEK: 1:10 CAD</span>
+                            </div>
+                            <div class="bg-alabaster border border-hairline p-6 flex items-center justify-center min-h-[300px]">
+                                <svg id="catalog-blueprint-svg" viewBox="0 0 400 280" class="w-full h-auto"></svg>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-hairline space-y-2">
+                                <div class="font-mono text-[10px] text-stone uppercase tracking-widest" id="schematic-part-kicker">BİLEŞEN ANALİZİ</div>
+                                <h4 id="schematic-part-title" class="font-serif text-2xl text-charcoal">Dipol Elektrostatik Kule & Traverten Kaide</h4>
+                                <p id="schematic-part-desc" class="text-xs text-stone leading-relaxed">Ön ve arka faz dalgalarının simetrik yayılımını gösteren üstten ve yandan ortografik projeksiyon.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- 9. FOOTER                                                        -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <footer class="relative pt-32 md:pt-44 bg-travertine overflow-hidden">
+        <div class="max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 relative z-10">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-24 border-b border-hairline items-end">
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-stone block">EDİSYON TAHSİSİ & ÖZEL DİNLEME ODASI</span>
+                    <h2 class="display-stage text-charcoal">
+                        Sessizliği Bizzat <br>
+                        <span class="italic font-light text-stone">Deneyimleyin.</span>
+                    </h2>
+                    <p class="text-base text-stone max-w-xl leading-relaxed font-light">
+                        OBJEKT // 01 seri üretim bir elektronik cihaz değildir; yılda yalnızca 50 numaralı çift olarak üretilen mimari bir ses heykelidir. Zürih, Milano veya Kayseri akustik galerilerimizde baş küratör eşliğinde özel dinleme seansı talep edin.
+                    </p>
+                </div>
+                <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
+                    <button type="button" onclick="openAppointmentModal()" class="w-full py-5 px-8 bg-charcoal text-alabaster hover:bg-stone font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-500 flex items-center justify-between group">
+                        <span>ÖZEL GÖSTERİM & EDİSYON REZERVASYONU</span>
+                        <span class="group-hover:translate-x-1.5 transition-transform">→</span>
+                    </button>
+                    <button type="button" onclick="downloadMonograph()" class="w-full py-5 px-8 bg-alabaster hover:bg-travertineDeep text-charcoal border border-hairline font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-500 flex items-center justify-between">
+                        <span>BASILI MONOGRAFİ & MIMARİ DWG İNDİR</span>
+                        <span class="text-stone">[PDF // 28 MB]</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-14 font-mono text-xs text-stone">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-charcoal block mb-2">ATELIER VERA ZÜRICH</span>
+                    <p class="text-[11px] leading-relaxed">Talstrasse 82, 8001 Zürich<br>İsviçre // Akustik Laboratuvar</p>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-charcoal block mb-2">ATELIER VERA ANATOLIA</span>
+                    <p class="text-[11px] leading-relaxed">Mimarsinan Taş & Akustik Atölyesi<br>Kayseri // Türkiye</p>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-charcoal block mb-2">EDİSYON BEDELİ</span>
+                    <p class="text-[11px] leading-relaxed">€64,000 EUR (Eşleştirilmiş Çift)<br>Mimari Kurulum & Oda Kalibrasyonu Dahil</p>
+                </div>
+                <div class="md:text-right">
+                    <span class="text-[10px] uppercase tracking-widest text-charcoal block mb-2">KÜRATÖRYEL İLETİŞİM</span>
+                    <p class="text-[11px] leading-relaxed">concierge@atelier-vera.ch<br>
+                        <a href="#sergi-giris" class="text-charcoal underline underline-offset-4">SERGİ BAŞINA DÖN ↑</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="w-full overflow-hidden pt-4 border-t border-hairline text-center">
+            <div class="footer-monument-serif text-charcoal/[0.08] hover:text-charcoal/[0.16] transition-colors duration-1000 whitespace-nowrap">
+                OBJEKT // 01
+            </div>
+        </div>
+    </footer>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- RANDEVU MODALI                                                   -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div id="appointment-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-charcoal/50 backdrop-blur-sm">
+        <div class="bg-alabaster border border-charcoal w-full max-w-2xl p-6 sm:p-12 relative max-h-[92vh] overflow-y-auto shadow-2xl">
+
+            <div class="flex items-center justify-between pb-4 mb-8 border-b border-hairline font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
+                <span>ATELIER VERA // ÖZEL DİNLEME & KOLEKSİYON KAYDI</span>
+                <button type="button" onclick="closeAppointmentModal()" class="text-charcoal hover:text-stone px-2 py-1 border border-hairline">[ ESC / KAPAT ]</button>
+            </div>
+
+            <h3 class="font-serif text-3xl sm:text-4xl text-charcoal mb-3">Özel Gösterim Randevusu</h3>
+            <p class="text-xs sm:text-sm text-stone leading-relaxed mb-8">
+                OBJEKT // 01 edisyonlarından birini kendi mimari projeniz için rezerve etmek veya özel akustik odamızda birebir dinleme seansı planlamak için aşağıdaki künyeyi doldurun.
+            </p>
+
+            <form onsubmit="submitAppointment(event)" class="space-y-6 font-mono text-xs">
+                <div>
+                    <label class="block text-[10px] text-stone uppercase tracking-widest mb-2">01. DİNLEME GALERİSİ / LOKASYON SEÇİMİ</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <label class="cursor-pointer border border-charcoal bg-travertine p-3.5 block">
+                            <input type="radio" name="gallery_loc" value="Zürich Pavillon" checked class="sr-only">
+                            <span class="text-charcoal font-medium block">ZÜRICH</span>
+                            <span class="text-[10px] text-stone">Pavillon Vera</span>
+                        </label>
+                        <label class="cursor-pointer border border-hairline hover:border-charcoal p-3.5 block transition-colors">
+                            <input type="radio" name="gallery_loc" value="Kayseri Akustik Atölye" class="sr-only">
+                            <span class="text-charcoal font-medium block">KAYSERİ</span>
+                            <span class="text-[10px] text-stone">Taş & Akustik Lab</span>
+                        </label>
+                        <label class="cursor-pointer border border-hairline hover:border-charcoal p-3.5 block transition-colors">
+                            <input type="radio" name="gallery_loc" value="Milano Brera" class="sr-only">
+                            <span class="text-charcoal font-medium block">MİLANO</span>
+                            <span class="text-[10px] text-stone">Salone Brera</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] text-stone uppercase tracking-widest mb-2">02. TRAVERTEN TONU & ANODİZASYON</label>
+                    <select class="w-full bg-travertine border border-hairline text-charcoal p-3.5 focus:outline-none focus:border-charcoal">
+                        <option>Tivoli Classico (Açık Fildişi Traverten + Ham Gümüş Alüminyum)</option>
+                        <option>Romano Noce (Sıcak Toprak Traverten + Fırçalanmış Bronz Stator)</option>
+                        <option>Silver Ash Travertine (Kül Grisi Damarlı + Kömür Anodize Alüminyum)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] text-stone uppercase tracking-widest mb-1.5">KOLEKSİYONER / MİMAR ADI *</label>
+                        <input
+                            type="text"
+                            required
+                            maxlength="120"
+                            autocomplete="name"
+                            spellcheck="false"
+                            placeholder="Örn: Mimar Kerem Soylu"
+                            pattern="[A-Za-zÇçĞğİıÖöŞşÜü\s\-\.]{2,120}"
+                            title="Yalnızca harf, boşluk ve tire kabul edilir (2–120 karakter)"
+                            class="w-full bg-travertine border border-hairline text-charcoal p-3.5 focus:outline-none focus:border-charcoal"
+                        >
+                    </div>
+                    <div>
+                        <label class="block text-[10px] text-stone uppercase tracking-widest mb-1.5">KURUMSAL E-POSTA *</label>
+                        <input
+                            type="email"
+                            required
+                            maxlength="254"
+                            autocomplete="email"
+                            spellcheck="false"
+                            placeholder="iletisim@mimarlik.com"
+                            class="w-full bg-travertine border border-hairline text-charcoal p-3.5 focus:outline-none focus:border-charcoal"
+                        >
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-[10px] text-stone block">MEVCUT EDİSYON DURUMU</span>
+                        <span class="text-sm text-charcoal font-medium">2026 Serisi — Edisyon № 19/50 Müsait</span>
+                    </div>
+                    <button type="submit" class="py-4 px-8 bg-charcoal text-alabaster hover:bg-stone uppercase tracking-[0.18em] transition-colors">
+                        DAVETİYE TALEP ET →
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Harici JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
